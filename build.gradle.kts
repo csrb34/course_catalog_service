@@ -36,8 +36,9 @@ dependencies {
 //	runtimeOnly("org.postgresql:postgresql")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation("org.springframework.boot:spring-boot-starter-webflux")
+//	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+//	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 kotlin {
@@ -48,4 +49,12 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+sourceSets { // lambda
+	test { // lambda
+		java {
+			setSrcDirs(listOf("src/test/intg", "src/test/unit"))
+		}
+	}
 }
