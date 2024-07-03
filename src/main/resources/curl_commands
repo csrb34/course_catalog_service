@@ -3,6 +3,18 @@ Greeting Controller:
 curl -i http://localhost:8080/v1/greetings/carla
 
 ===================
+Course DB: |
+===================
+
+DB Web Client:
+====================
+http://localhost:8080/h2-console/
+url: jdbc:h2:mem:testdb
+username: SA
+password: password
+
+
+===================
 Course Controller: |
 ===================
 
