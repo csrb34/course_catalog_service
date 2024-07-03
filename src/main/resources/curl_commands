@@ -25,6 +25,10 @@ curl -i \
 -H "Content-Type: application/json" \
 -X POST http://localhost:8080/v1/courses
 
+curl -i \
+-d '{"name":"Learning effective communication", "category": "Business"}' \
+-H "Content-Type: application/json" \
+-X POST http://localhost:8080/v1/courses
 
 curl -i \
 -d '{"id":null, "name":"Build Reactive Microservices using Spring WebFlux/SpringBoot ", "category": "Development"}' \
