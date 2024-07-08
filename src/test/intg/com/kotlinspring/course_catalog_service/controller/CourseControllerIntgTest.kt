@@ -1,6 +1,7 @@
 package com.kotlinspring.course_catalog_service.controller
 
 import com.kotlinspring.course_catalog_service.dto.CourseDTO
+import com.kotlinspring.course_catalog_service.entity.Course
 import com.kotlinspring.course_catalog_service.repository.CourseRepository
 import com.kotlinspring.course_catalog_service.util.courseEntityList
 import org.junit.jupiter.api.Assertions
@@ -63,5 +64,28 @@ class CourseControllerIntgTest {
 
 //        println("CourseDTOs: $courseDTOs")
         Assertions.assertEquals(3, courseDTOs!!.size)
+    }
+
+    @Test
+    fun updateCourse(){
+        val course = Course(null,
+            "Build RestFul APis using SpringBoot and Kotlin", "Development")
+        courseRepository.save(course)
+
+
+        val newCourseDTO = CourseDTO(null,
+            "Build microservices using Kotlin", "Development")
+
+        val updatedCourse = webTestClient
+            .put()
+            .uri("/v1/courses/{courseId}", course.id)
+            .bodyValue(newCourseDTO)
+            .exchange()
+            .expectStatus().isOk
+            .expectBody(CourseDTO::class.java)
+            .returnResult()
+            .responseBody
+
+        Assertions.assertEquals("Build microservices using Kotlin", updatedCourse!!.name)
     }
 }

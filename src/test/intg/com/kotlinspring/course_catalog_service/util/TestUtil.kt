@@ -4,15 +4,15 @@ import com.kotlinspring.course_catalog_service.dto.CourseDTO
 import com.kotlinspring.course_catalog_service.entity.Course
 //import com.kotlinspring.course_catalog_service.entity.Instructor
 
-fun courseDTO(
-    id: Int? = null,
-    name: String = "Build RestFul APis using Spring Boot and Kotlin",
-    category: String = "Dilip Sundarraj",
-) = CourseDTO(
-    id,
-    name,
-    category
-)
+//fun courseDTO(
+//    id: Int? = null,
+//    name: String = "Build RestFul APis using Spring Boot and Kotlin",
+//    category: String = "Dilip Sundarraj",
+//) = CourseDTO(
+//    id,
+//    name,
+//    category
+//)
 
 
 fun courseEntityList() = listOf(
