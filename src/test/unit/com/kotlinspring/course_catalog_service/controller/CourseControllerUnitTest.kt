@@ -1,11 +1,12 @@
 package com.kotlinspring.course_catalog_service.controller
 
 import com.kotlinspring.course_catalog_service.dto.CourseDTO
-import com.kotlinspring.course_catalog_service.entity.Course
 import com.kotlinspring.course_catalog_service.service.CourseService
 import com.kotlinspring.course_catalog_service.util.courseDTO
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
+import io.mockk.just
+import io.mockk.runs
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -89,17 +90,18 @@ class CourseControllerUnitTest {
 
         Assertions.assertEquals("Build microservices using Kotlin", updatedCourse!!.name)
     }
-//
-//    @Test
-//    fun deleteCourse(){
-//        val course = Course(null,
-//            "Build RestFul APis using SpringBoot and Kotlin", "Development")
-//        courseRepository.save(course)
-//
-//        val deletedCourse = webTestClient
-//            .delete()
-//            .uri("/v1/courses/{courseId}", course.id)
-//            .exchange()
-//            .expectStatus().isNoContent
-//    }
+
+    @Test
+    fun deleteCourse(){
+
+        every {
+            courseServiceMockk.deleteCourse(any())
+        } just runs // mocks functions that doesn't return any value
+
+        val deletedCourse = webTestClient
+            .delete()
+            .uri("/v1/courses/{courseId}", 999)
+            .exchange()
+            .expectStatus().isNoContent
+    }
 }
