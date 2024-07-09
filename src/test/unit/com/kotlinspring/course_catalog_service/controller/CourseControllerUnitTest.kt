@@ -67,29 +67,28 @@ class CourseControllerUnitTest {
 
         Assertions.assertEquals(2, courseDTOs!!.size)
     }
-//
-//    @Test
-//    fun updateCourse(){
-//        val course = Course(null,
-//            "Build RestFul APis using SpringBoot and Kotlin", "Development")
-//        courseRepository.save(course)
-//
-//
-//        val newCourseDTO = CourseDTO(null,
-//            "Build microservices using Kotlin", "Development")
-//
-//        val updatedCourse = webTestClient
-//            .put()
-//            .uri("/v1/courses/{courseId}", course.id)
-//            .bodyValue(newCourseDTO)
-//            .exchange()
-//            .expectStatus().isOk
-//            .expectBody(CourseDTO::class.java)
-//            .returnResult()
-//            .responseBody
-//
-//        Assertions.assertEquals("Build microservices using Kotlin", updatedCourse!!.name)
-//    }
+
+    @Test
+    fun updateCourse(){
+        val newCourseDTO = CourseDTO(null,
+            "Build microservices using Kotlin", "Development")
+
+        every {
+            courseServiceMockk.updateCourse(any(), any())
+        } returns courseDTO(id = 100, name = "Build microservices using Kotlin")
+
+        val updatedCourse = webTestClient
+            .put()
+            .uri("/v1/courses/{courseId}", 100)
+            .bodyValue(newCourseDTO)
+            .exchange()
+            .expectStatus().isOk
+            .expectBody(CourseDTO::class.java)
+            .returnResult()
+            .responseBody
+
+        Assertions.assertEquals("Build microservices using Kotlin", updatedCourse!!.name)
+    }
 //
 //    @Test
 //    fun deleteCourse(){
