@@ -44,20 +44,29 @@ class CourseControllerUnitTest {
         Assertions.assertNotNull(saveCourseDTO!!.id)
     }
 
-//    @Test
-//    fun retrieveAllCourses(){
-//        val courseDTOs = webTestClient
-//            .get()
-//            .uri("/v1/courses")
-//            .exchange()
-//            .expectStatus().isOk
-//            .expectBodyList(CourseDTO::class.java)
-//            .returnResult()
-//            .responseBody
-//
-////        println("CourseDTOs: $courseDTOs")
-//        Assertions.assertEquals(3, courseDTOs!!.size)
-//    }
+    @Test
+    fun retrieveAllCourses(){
+
+        every {
+            courseServiceMockk.retrieveAllCourses()
+        }.returnsMany(
+            listOf(
+                courseDTO(id = 1),
+                courseDTO(id = 2, name="Learning effective communication")
+            )
+        )
+
+        val courseDTOs = webTestClient
+            .get()
+            .uri("/v1/courses")
+            .exchange()
+            .expectStatus().isOk
+            .expectBodyList(CourseDTO::class.java)
+            .returnResult()
+            .responseBody
+
+        Assertions.assertEquals(2, courseDTOs!!.size)
+    }
 //
 //    @Test
 //    fun updateCourse(){
