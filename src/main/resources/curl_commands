@@ -38,6 +38,7 @@ curl -i \
 GET COURSES:
 ==============
 curl -i http://localhost:8080/v1/courses
+curl -i http://localhost:8080/v1/courses?course_name=SpringBoot
 
 UPDATE COURSE:
 ==============
