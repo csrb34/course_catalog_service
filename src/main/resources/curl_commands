@@ -18,7 +18,7 @@ password: password
 Course Controller: |
 ===================
 
-CREATE COURSE:
+CREATE COURSE: ( NO INSTRUCTOR )
 ==============
 curl -i \
 -d '{"id":null, "name":"Build Restful APIs using Kotlin and SpringBoot", "category": "Development"}' \
@@ -78,5 +78,20 @@ CREATE COURSE WITH INSTRUCTOR:
 ==================
 curl -i \
 -d '{"id":null, "name":"Build Restful APIs using Kotlin and SpringBoot", "category": "Development", "instructorId": 1}' \
+-H "Content-Type: application/json" \
+-X POST http://localhost:8080/v1/courses
+
+curl -i \
+-d '{"name":"Learning effective communication", "category": "Business", "instructorId": 1}' \
+-H "Content-Type: application/json" \
+-X POST http://localhost:8080/v1/courses
+
+curl -i \
+-d '{"id":null, "name":"Build Reactive Microservices using Spring WebFlux/SpringBoot ", "category": "Development", "instructorId": 1}' \
+-H "Content-Type: application/json" \
+-X POST http://localhost:8080/v1/courses
+
+curl -i \
+-d '{"id":null, "name":"Build Restful APIs using Kotlin and SpringBoot", "category": "Development", "instructorId": 2}' \
 -H "Content-Type: application/json" \
 -X POST http://localhost:8080/v1/courses

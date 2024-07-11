@@ -35,9 +35,9 @@ dependencies {
 	implementation("io.github.microutils:kotlin-logging-jvm:2.0.11")
 
 	// db
-	runtimeOnly("com.h2database:h2") // in-memory DB, meant to be used only for early development steps
+//	runtimeOnly("com.h2database:h2") // in-memory DB, meant to be used only for early development steps
+	runtimeOnly("org.postgresql:postgresql")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//	runtimeOnly("org.postgresql:postgresql")
 
 	// testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
