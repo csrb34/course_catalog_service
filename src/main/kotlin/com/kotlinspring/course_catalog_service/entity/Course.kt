@@ -13,4 +13,8 @@ data class Course (
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="INSTRUCTOR_ID", nullable = false)
     var instructor: Instructor? =null
-)
+) {
+    override fun toString(): String {
+        return "Course(id=$id, name='$name', category='$category', instructor=${instructor!!.id})"
+    }
+}
