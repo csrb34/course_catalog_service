@@ -1,6 +1,7 @@
 package com.kotlinspring.course_catalog_service.util
 
 import com.kotlinspring.course_catalog_service.dto.CourseDTO
+import com.kotlinspring.course_catalog_service.dto.InstructorDTO
 import com.kotlinspring.course_catalog_service.entity.Course
 //import com.kotlinspring.course_catalog_service.entity.Instructor
 
@@ -37,6 +38,14 @@ fun courseDTO(
     name,
     category,
 //    instructorId
+)
+
+fun instructorDTO(
+    id: Int? = null,
+    name: String = "Carla San Roman",
+) = InstructorDTO(
+    id,
+    name
 )
 
 //fun courseEntityList(instructor: Instructor? = null) = listOf(
