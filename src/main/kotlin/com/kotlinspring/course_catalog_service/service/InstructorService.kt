@@ -1,6 +1,5 @@
 package com.kotlinspring.course_catalog_service.service
 
-import com.kotlinspring.course_catalog_service.dto.CourseDTO
 import com.kotlinspring.course_catalog_service.dto.InstructorDTO
 import com.kotlinspring.course_catalog_service.entity.Instructor
 import com.kotlinspring.course_catalog_service.repository.InstructorRepository
@@ -13,6 +12,7 @@ class InstructorService(val instructorRepository: InstructorRepository) {
             Instructor(it.id, it.name)
         }
 
+        println(instructorEntity)
         instructorRepository.save(instructorEntity)
 
         return instructorEntity.let {
