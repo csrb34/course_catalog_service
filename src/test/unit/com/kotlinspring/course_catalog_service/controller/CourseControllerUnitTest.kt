@@ -1,6 +1,7 @@
 package com.kotlinspring.course_catalog_service.controller
 
 import com.kotlinspring.course_catalog_service.dto.CourseDTO
+import com.kotlinspring.course_catalog_service.repository.InstructorRepository
 import com.kotlinspring.course_catalog_service.service.CourseService
 import com.kotlinspring.course_catalog_service.util.courseDTO
 import com.ninjasquad.springmockk.MockkBean
@@ -26,7 +27,7 @@ class CourseControllerUnitTest {
 
     @Test
     fun addCourse() {
-        val courseDTO = CourseDTO(null, "Learning effective communication", "Business")
+        val courseDTO = CourseDTO(null, "Learning effective communication", "Business", 1)
 
         every {
             courseServiceMockk.addCourse(any())
@@ -47,7 +48,7 @@ class CourseControllerUnitTest {
 
     @Test
     fun addCourse_validation() {
-        val courseDTO = CourseDTO(null, "", "")
+        val courseDTO = CourseDTO(null, "", "", 1)
 
         every {
             courseServiceMockk.addCourse(any())
@@ -68,7 +69,7 @@ class CourseControllerUnitTest {
 
     @Test
     fun addCourse_runtimeException() {
-        val courseDTO = CourseDTO(null, "Learning effective communication", "Business")
+        val courseDTO = CourseDTO(null, "Learning effective communication", "Business", 1)
 
         val errorMessage = "Unexpected error occurred"
         every {
