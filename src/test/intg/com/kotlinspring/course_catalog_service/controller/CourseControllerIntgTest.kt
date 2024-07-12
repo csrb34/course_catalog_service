@@ -4,6 +4,7 @@ import com.kotlinspring.course_catalog_service.dto.CourseDTO
 import com.kotlinspring.course_catalog_service.entity.Course
 import com.kotlinspring.course_catalog_service.repository.CourseRepository
 import com.kotlinspring.course_catalog_service.repository.InstructorRepository
+import com.kotlinspring.course_catalog_service.util.PostgreSQLContainerInitializer
 import com.kotlinspring.course_catalog_service.util.courseEntityList
 import com.kotlinspring.course_catalog_service.util.instructorEntity
 import org.junit.jupiter.api.Assertions
@@ -25,8 +26,8 @@ import org.testcontainers.utility.DockerImageName
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @AutoConfigureWebClient
-@Testcontainers
-class CourseControllerIntgTest {
+//@Testcontainers
+class CourseControllerIntgTest : PostgreSQLContainerInitializer(){
 
     @Autowired
     lateinit var webTestClient: WebTestClient
@@ -37,23 +38,23 @@ class CourseControllerIntgTest {
     @Autowired
     lateinit var instructorRepository: InstructorRepository
 
-    companion object {
-
-        @Container
-        val postgresDB = PostgreSQLContainer<Nothing>(DockerImageName.parse("postgres:13-alpine")).apply {
-            withDatabaseName("testdb")
-            withUsername("postgres")
-            withPassword("secret")
-        }
-
-        @JvmStatic
-        @DynamicPropertySource
-        fun properties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.datasource.url", postgresDB::getJdbcUrl)
-            registry.add("spring.datasource.username", postgresDB::getUsername)
-            registry.add("spring.datasource.password", postgresDB::getPassword)
-        }
-    }
+//    companion object {
+//
+//        @Container
+//        val postgresDB = PostgreSQLContainer<Nothing>(DockerImageName.parse("postgres:13-alpine")).apply {
+//            withDatabaseName("testdb")
+//            withUsername("postgres")
+//            withPassword("secret")
+//        }
+//
+//        @JvmStatic
+//        @DynamicPropertySource
+//        fun properties(registry: DynamicPropertyRegistry) {
+//            registry.add("spring.datasource.url", postgresDB::getJdbcUrl)
+//            registry.add("spring.datasource.username", postgresDB::getUsername)
+//            registry.add("spring.datasource.password", postgresDB::getPassword)
+//        }
+//    }
 
 
     @BeforeEach
